@@ -41,10 +41,12 @@ namespace TableStorage
         /// Create a table for the sample application to process messages in. 
         /// </summary>
         /// <returns>A CloudTable object</returns>
-        public static async Task<CloudTable> CreateTableAsync(string tableName)
+        public static async Task<CloudTable> CreateTableAsync(string tableName, string acct, string key)
         {
+
             // Retrieve storage account information from connection string.
-            CloudStorageAccount storageAccount = CreateStorageAccountFromConnectionString(CloudConfigurationManager.GetSetting("StorageConnectionString"));
+            string storageConnectionString = string.Format("DefaultEndpointsProtocol=https;AccountName={0};AccountKey={1};TableEndpoint=https://{0}.table.cosmosdb.azure.com:443/;", acct, key);
+            CloudStorageAccount storageAccount = CreateStorageAccountFromConnectionString(storageConnectionString);
 
             // Create a table client for interacting with the table service
             CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
@@ -53,6 +55,7 @@ namespace TableStorage
 
             // Create a table client for interacting with the table service 
             CloudTable table = tableClient.GetTableReference(tableName);
+
             try
             {
                 if (await table.CreateIfNotExistsAsync())

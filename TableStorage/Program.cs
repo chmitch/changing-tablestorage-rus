@@ -47,8 +47,8 @@ namespace TableStorage
             BasicSamples basicSamples = new BasicSamples();
             basicSamples.RunSamples().Wait();
 
-            AdvancedSamples advancedSamples = new AdvancedSamples();
-            advancedSamples.RunSamples().Wait();
+            //AdvancedSamples advancedSamples = new AdvancedSamples();
+            //advancedSamples.RunSamples().Wait();
 
             Console.WriteLine();
             Console.WriteLine("Press any key to exit");

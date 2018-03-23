@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Azure.CosmosDB.Table;
 using Microsoft.Azure.Storage;
+using Microsoft.Azure;
 using TableStorage.Model;
 using System.Threading;
 using Microsoft.Azure.Storage.Shared.Protocol;
@@ -18,9 +19,11 @@ namespace TableStorage
             Console.WriteLine();
 
             string tableName = "demo" + Guid.NewGuid().ToString().Substring(0, 5);
+            string accountName = CloudConfigurationManager.GetSetting("CosmosAccount");
+            string accountKey = CloudConfigurationManager.GetSetting("CosmosKey");
 
             // Create or reference an existing table
-            CloudTable table = await Common.CreateTableAsync(tableName);
+            CloudTable table = await Common.CreateTableAsync(tableName, accountName, accountKey);
             CloudTableClient tableClient = table.ServiceClient;
 
             try
