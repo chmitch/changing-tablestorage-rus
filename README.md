@@ -2,6 +2,7 @@
 services: storage
 platforms: dotnet
 author: jasonnewyork
+modifiedby:  chmitch
 ---
 
 # Getting Started with Azure Table Storage in .NET
@@ -30,7 +31,7 @@ tables created in table accounts created after GA on 11/15/2017.__
 "Connection String" in the menu, select the Read-write Keys tab and copy the value 
 in the "CONNECTION STRING" field.
 2. Open the App.config file and set 
-StorageConnectionString to your connection string.
+CosmosAccount and CosmosKey to your account name and account key.
 3. Load the project in Visual Studio (the [community version](https://www.visualstudio.com/vs/community/) is available for free)
 4. Run
 
